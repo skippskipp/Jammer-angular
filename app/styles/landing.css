@@ -35,16 +35,12 @@ body.landing {
     position: relative;
     padding: 2rem;
     text-align: center;
-    opacity: 0;
+    opacity: 1;
     -webkit-transform: scaleX(0.9) translateY(3rem);
     -moz-transform: scaleX(0.9) translateY(3rem);
     transform: scaleX(0.9) translateY(3rem);
     -webkit-transition: all 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     -moz-transition: all 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    transition: all 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    -webkit-transition-delay: 0.8s;
-    -moz-transition-delay: 0.8s;
-    transition-delay: 0.8s;
 }
 
 .point  .point-title {
