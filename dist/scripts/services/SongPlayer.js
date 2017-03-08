@@ -1,7 +1,7 @@
 (function() {
     function SongPlayer(Fixtures) {
         /**
-        * @desc audio file interface
+        * @desc audio file container
         * @type {Object}
         */
         var SongPlayer = {};
