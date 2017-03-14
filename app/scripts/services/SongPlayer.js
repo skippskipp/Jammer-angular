@@ -35,13 +35,19 @@
             });
             
             currentBuzzObject.bind('timeupdate', function() {
-                console.log("hello");
                 $rootScope.$apply(function() {
                     SongPlayer.currentTime = currentBuzzObject.getTime();
                 });
             });
             
+            currentBuzzObject.bind('volumechange', function() {
+                $rootScope.$apply(function() {
+                    SongPlayer.volume = currentBuzzObject.getVolume();
+                });
+            });
+            
             SongPlayer.currentSong = song;
+            SongPlayer.filterTimeCode(SongPlayer.currentTime);
         };
         
         /**
@@ -73,6 +79,7 @@
             return currentAlbum.songs.indexOf(song);
         };
         
+        
         /**
         * @desc active song object from list of songs
         * @type {Object}
@@ -84,6 +91,12 @@
         * @type {Number}
         */
         SongPlayer.currentTime = null;
+        
+        /**
+        * @desc Current playback volume level
+        * @type {Number}
+        */
+        SongPlayer.volume = null;
         
         /**
         * @function play
@@ -160,6 +173,39 @@
         SongPlayer.setCurrentTime = function(time) {
             if (currentBuzzObject) {
                 currentBuzzObject.setTime(time);
+            }
+        };
+        
+        /**
+        * @function filterTimeCode
+        * @desc returns a human-readable time from an integer
+        * @param {Object} time
+        */
+        SongPlayer.filterTimeCode = function(timeInSeconds) {
+            if (currentBuzzObject) {
+                var seconds = Number.parseFloat(timeInSeconds);
+                var wholeSeconds = Math.floor(seconds);
+                var minutes = Math.floor(wholeSeconds / 60);
+                var remainingSeconds = wholeSeconds % 60;
+                var output = minutes + ':';
+                if (remainingSeconds < 10) {
+                output += '0';   
+                }
+                output += remainingSeconds;
+            } else {
+                var output = '0:00'
+            }
+            return output;
+        };
+        
+        /**
+        * @function setVolume
+        * @desc Set volume level of playback
+        * @param {Number} volume level
+        */
+        SongPlayer.setVolume = function(value) {
+            if (currentBuzzObject) {
+                SongPlayer.volume = currentBuzzObject.setVolume(value);
             }
         };
         
