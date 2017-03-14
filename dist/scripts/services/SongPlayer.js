@@ -47,7 +47,6 @@
             });
             
             SongPlayer.currentSong = song;
-            SongPlayer.filterTimeCode(SongPlayer.currentTime);
         };
         
         /**
@@ -175,29 +174,7 @@
                 currentBuzzObject.setTime(time);
             }
         };
-        
-        /**
-        * @function filterTimeCode
-        * @desc returns a human-readable time from an integer
-        * @param {Object} time
-        */
-        SongPlayer.filterTimeCode = function(timeInSeconds) {
-            if (currentBuzzObject) {
-                var seconds = Number.parseFloat(timeInSeconds);
-                var wholeSeconds = Math.floor(seconds);
-                var minutes = Math.floor(wholeSeconds / 60);
-                var remainingSeconds = wholeSeconds % 60;
-                var output = minutes + ':';
-                if (remainingSeconds < 10) {
-                output += '0';   
-                }
-                output += remainingSeconds;
-            } else {
-                var output = '0:00'
-            }
-            return output;
-        };
-        
+                
         /**
         * @function setVolume
         * @desc Set volume level of playback
